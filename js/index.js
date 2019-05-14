@@ -2,8 +2,7 @@
 // mouseover
 const logo = document.querySelector(".logo-heading");
 logo.addEventListener('mouseover', (event) => {
-    logo.style.fontSize= '5rem';
-    TweenMax.to(".nav", 3, {x:-200, opacity: 1}) 
+    logo.style.fontSize= '8rem';
     event.stopPropagation();
 });
 
@@ -13,11 +12,18 @@ document.addEventListener('keydown', () => {
 });
 
 // wheel
-introImg.addEventListener('wheel', () => {
-    introImg.style.height = 'auto';
+const introH2 = document.querySelector('.intro h2');
+introH2.addEventListener("wheel", function(event) {
+  document.body.style.backgroundImage =
+    "url(https://images.unsplash.com/photo-1473889803946-6a3923603697?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=751&q=80)";
 });
 
+
 // drag / drop
+
+// form.addEventListener("drop", event => event.preventDefault());
+
+// console.log(form);
 
 // load
 window.addEventListener('load', () => {
@@ -25,6 +31,22 @@ window.addEventListener('load', () => {
   });
 
 // focus
+const form = document.getElementById("form");
+
+form.addEventListener(
+  "focus",
+  event => { event.target.style.background = "pink"; 
+},
+  true
+);
+
+form.addEventListener(
+  "blur", event => {
+    event.target.style.background = "";
+  },
+  true
+);
+
 
 // resize
 window.addEventListener('resize', () => {
@@ -32,13 +54,27 @@ window.addEventListener('resize', () => {
 });
 
 // scroll
+// window.addEventListener('scroll', () => {
+//   alert(`woah slow down.`);
+// });
+
 
 // select 
+function logSelection(event) {
+  const log = document.getElementById("log");
+  const selection = event.target.value.substring(
+    event.target.selectionStart,
+    event.target.selectionEnd
+  );
+  log.textContent = `Look what you did: ${selection}`;
+}
+
+const input = document.querySelector("input");
+input.addEventListener("select", logSelection);
 
 // dblclick
-const introH2 = document.querySelector('.intro h2');
 introH2.addEventListener('dblclick', () => {
-    introH2.innerHTML = 'Golden Egg - here is your %20 coupon code #1goldenEggBounty';
+    introH2.innerHTML = 'JUST KIDDING. THIS IS A NIGHTMARE BUS.';
 });
 
 // Prevent navigation from refreshing page
