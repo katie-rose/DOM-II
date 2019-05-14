@@ -40,10 +40,19 @@
   <input type="text" placeholder="username">
   <input type="password" placeholder="password">
 </form>
-<h2>Try Selecting Text</h2>
-<input value="Try selecting some text in this element.">
-<p id="log">
-</p>
+<h2>Select Text Gets Pointer Curser</h2>
+<div class="selectable">
+    <p>Select ze text.</p>
+</div>
+<h2> Drag And Drop Zone </h2>
+<div class="dropzone"> 
+  <div id="draggable" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)"> 
+    This div is draggable 
+  </div> 
+</div> 
+<div class="dropzone"></div>
+<div class="dropzone"></div> 
+<div class="dropzone"></div>
     </header>
     <section class="content-section">
       <div class="text-content">

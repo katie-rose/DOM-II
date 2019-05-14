@@ -21,9 +21,77 @@ introH2.addEventListener("wheel", function(event) {
 
 // drag / drop
 
-// form.addEventListener("drop", event => event.preventDefault());
+var dragged;
 
-// console.log(form);
+/* events fired on the draggable target */
+document.addEventListener("drag", function(event) {}, false);
+
+document.addEventListener(
+  "dragstart",
+  function(event) {
+    // store a ref. on the dragged elem
+    dragged = event.target;
+    // make it half transparent
+    event.target.style.opacity = 0.5;
+  },
+  false
+);
+
+document.addEventListener(
+  "dragend",
+  function(event) {
+    // reset the transparency
+    event.target.style.opacity = "";
+  },
+  false
+);
+
+/* events fired on the drop targets */
+document.addEventListener(
+  "dragover",
+  function(event) {
+    // prevent default to allow drop
+    event.preventDefault();
+  },
+  false
+);
+
+document.addEventListener(
+  "dragenter",
+  function(event) {
+    // highlight potential drop target when the draggable element enters it
+    if (event.target.className == "dropzone") {
+      event.target.style.background = "purple";
+    }
+  },
+  false
+);
+
+document.addEventListener(
+  "dragleave",
+  function(event) {
+    // reset background of potential drop target when the draggable element leaves it
+    if (event.target.className == "dropzone") {
+      event.target.style.background = "";
+    }
+  },
+  false
+);
+
+document.addEventListener(
+  "drop",
+  function(event) {
+    // prevent default action (open as link for some elements)
+    event.preventDefault();
+    // move dragged elem to the selected drop target
+    if (event.target.className == "dropzone") {
+      event.target.style.background = "";
+      dragged.parentNode.removeChild(dragged);
+      event.target.appendChild(dragged);
+    }
+  },
+  false
+);
 
 // load
 window.addEventListener('load', () => {
@@ -60,17 +128,19 @@ window.addEventListener('resize', () => {
 
 
 // select 
-function logSelection(event) {
-  const log = document.getElementById("log");
-  const selection = event.target.value.substring(
-    event.target.selectionStart,
-    event.target.selectionEnd
-  );
-  log.textContent = `Look what you did: ${selection}`;
-}
+window.getSelection().toString();
 
-const input = document.querySelector("input");
-input.addEventListener("select", logSelection);
+function selectText(containerid) {
+  if (document.selection) {
+    var range = document.body.createTextRange();
+    range.moveToElementText(document.getElementById(containerid));
+    range.select();
+  } else if (window.getSelection) {
+    var range = document.createRange();
+    range.selectNode(document.getElementById(containerid));
+    window.getSelection().addRange(range);
+  }
+}
 
 // dblclick
 introH2.addEventListener('dblclick', () => {
