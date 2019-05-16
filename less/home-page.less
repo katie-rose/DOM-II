@@ -1,5 +1,28 @@
 .home {
 
+  .hide{
+    display: none;
+  }
+
+  #draggable {
+  width: 200px;
+  height: 20px;
+  text-align: center;
+  background: white;
+}
+
+.dropzone {
+  width: 200px;
+  height: 20px;
+  background: blueviolet;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.selectable {
+    cursor: pointer;
+}
+
   .intro {
     padding: 90px 0 10px;
     border-bottom: 2px dashed @navigation-border;
@@ -19,8 +42,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-
-   
     
     .text-content {
       width: 48%;
@@ -107,7 +128,7 @@
       }
       
       .btn {
-        .button-creator(200px, 45px, @button-bg, @white, 1.8rem);     
+        .button-creator(200px, 45px, @button-bg ,@white, 1.8rem);     
       }
     }
   }
